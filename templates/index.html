@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    >
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <h1 class="title"><a href="/">Regex Tower</a></h1>
+        <p class="subtitle">Test your regex skills!</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        {% if level_id == 1 %}
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <h2 class="title is-2">Rules:</h2>
+            <ol>
+              <li>Match all the target strings.</li>
+              <li>Do not match any avoid strings.</li>
+              <li>Completing a level unlocks the next level. Progress is tracked via JWT saved in the browser. No skipping ahead!</li>
+              <li>You can revisit previously completed levels any time.</li>
+              <li>If you get stuck, use a hint, or check your regex on <a href="https://regex101.com" target="_blank">Regex101</a>.</li>
+            </ol>
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <h2 class="title is-2">Level {{ level_id }}</h2>
+            <p>{{ description }}</p>
+
+            {% if hint %}
+            <button type="button" id="get-hint" class="button is-light">Get hint</button>
+
+            <div id="hint" class="notification is-hidden" style="margin-top:8px;">
+              <p>{{ hint }}</p>
+            </div>
+            {% endif %}
+
+            <form class="box" method="post" action="{{ url_for('level', level_id=level_id) }}">
+              <div class="field">
+                <label class="label">Pattern</label>
+                <div class="control">
+                  <input name="pattern" id="regex-input" class="input" type="text" placeholder="regular expression pattern" autofocus/>
+                  <input type="hidden" name="level_id" value="{{ level_id }}">
+                </div>
+              </div>
+
+              <button type="submit" id="submit-button" class="button is-primary">Submit</button>
+
+              <div class="fixed-grid has-2-cols has-text-centered" style="margin-top:1rem;">
+                <div class="grid">
+                  {% include 'lists.j2' %}
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <div class="content has-text-centered">
+        <p>
+          Github: <a href="https://github.com/tim-alt-delete/regex-tower" target="_blank">regex-tower</a>
+        </p>
+        <p>Blog: <a href="https://blog.timothypulliam.com" target="_blank">blog.timothypulliam.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/timothy-pulliam/" target="_blank">timothypulliam</a></p>
+      </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+  </body>
+</html>

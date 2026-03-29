@@ -1,0 +1,18 @@
+<div class="cell">
+    <h2 class="subtitle">Target List</h2>
+
+    <ul id="target-list">
+        {% for item in target_list %}
+            <li><span class="result-icon"></span>{{ item }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="cell">
+    <h2 class="subtitle">Avoid List</h2>
+    <ul id="avoid-list">
+        {% for item in avoid_list %}
+            <li><span class="result-icon"></span>{{ item }}</li>
+        {% endfor %}
+    </ul>  
+</div>

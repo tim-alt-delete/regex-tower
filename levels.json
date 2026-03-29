@@ -1,0 +1,104 @@
+[
+    {
+        "id": 1,
+        "target_list": ["Apple"],
+        "avoid_list": ["apple", "APPLE"],
+        "description": "Regex is case sensitive by default." 
+    },
+    {
+        "id": 2,
+        "target_list": ["cat"],
+        "avoid_list": ["car", "cap"],
+        "description": "The target word 'cat' should be recognized, while similar words like 'car' and 'cap' should be avoided."
+    },
+    {
+        "id": 3,
+        "target_list": ["dog", "fog"],
+        "avoid_list": ["dig", "fig"],
+        "description": "Now you will need to match both 'dog' and 'fog'. Is there something these words have in common?",
+        "hint": "Both words contain 'o'."
+    },
+    {
+        "id": 4,
+        "target_list": ["cat", "dog"],
+        "avoid_list": ["sheep", "goat"],
+        "description": "How can you match multiple words at once?",
+        "hint": "Use alternation (x|y)."
+    },
+    {
+        "id": 5,
+        "target_list": ["timmy", "tommy"],
+        "avoid_list": ["tammy", "tummy"],
+        "description": "Match 'timmy' and 'tommy' but not 'tammy' or 'tummy'.",
+        "hint": "Use character classes [xy] or alternation (x|y)."
+    },
+    {
+        "id": 6,
+        "target_list": ["apple"],
+        "avoid_list": ["pineapple"],
+        "description": "Match line starting with 'apple'.",
+        "hint": "Use anchor (^x)."
+    },
+    {
+        "id": 7,
+        "target_list": ["fruit"],
+        "avoid_list": ["fruitcake", "fruity"],
+        "description": "Match line ending with 'fruit'.",
+        "hint": "Use anchor (x$)."
+    },
+    {
+        "id": 8,
+        "target_list": ["haha"],
+        "avoid_list": ["hahaha", "ha"],
+        "description": "Match 'ha' repeated exactly twice.",
+        "hint": "Use both anchors (^ and $)."
+    },
+    {
+        "id": 9,
+        "target_list": ["A1", "B2", "c3", "c4", "D5", "E6", "f7"],
+        "avoid_list": ["1A", "2B", "3c", "44", "5d", "6e", "7f"],
+        "description": "Match strings that start with a letter followed by a digit.",
+        "hint": "Use character classes [x-yX-Y][a-b]."
+    },
+    {
+        "id": 10,
+        "target_list": ["#FF5733", "#33FF57", "#3357FF"],
+        "avoid_list": ["FF5733", "#FF573", "#FF57333", "#GG5733"],
+        "description": "Match valid hex color codes.",
+        "hint": "Use character class and quantifiers [A-Bx-y]{n}."
+    },
+    {
+        "id": 11,
+        "target_list": ["123-45-6789", "987-65-4321"],
+        "avoid_list": ["1-2345678-9", "987654321", "123-45-67890"],
+        "description": "Match valid US Social Security numbers.",
+        "hint": "\\d is equivalent to [0-9]."
+    },
+    {
+        "id": 12,
+        "target_list": ["jjones@example.com", "shelly99@gmail.com", "at.arcu@hotmail.org", "proin.eget.odio@google.couk"],
+        "avoid_list": ["hello.example.com", "foo@bar"],
+        "description": "Match valid email addresses.",
+        "hint": "You need to escape the dot (\\.)"
+    },
+    {
+        "id": 13,
+        "target_list": ["0", "7", "10", "99", "188", "255"],
+        "avoid_list": ["-1", "256", "999", "1.5", "abc"],
+        "description": "Match valid octet values (0-255) for IP addresses.",
+        "hint": "There are 4 edge cases: (0-9, 10-99, 100-199, 200-255). Also, anchor your pattern '^(...|...|...|...)$'"
+    },
+    {
+        "id": 14,
+        "target_list": ["10.10.10.10", "192.168.1.1", "172.16.0.1"],
+        "avoid_list": ["256.256.256.256", "123.456.789.0", "192.168.1.256", "1.22.333"],
+        "description": "Match valid IPv4 addresses.",
+        "hint": "Use the octet regex from the previous level with a dot in between '((...|...|...|...)\\.){3}(...|...|...|...)'"
+    },
+    {
+        "id": 15,
+        "target_list": ["(555) 123-4567", "555-123-4567"],
+        "avoid_list": ["5551234567", "555.123.4567", "1-22-333-4444"],
+        "description": "Match valid US phone numbers in various formats."
+    }
+]
