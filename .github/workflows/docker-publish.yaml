@@ -33,3 +33,17 @@ jobs:
           file: Dockerfile
           # optionally build multi-arch images:
           # platforms: linux/amd64,linux/arm64
+
+
+      - name: Install doctl
+        run: |
+          curl -sL https://github.com/digitalocean/doctl/releases/download/v1.153.0/doctl-1.153.0-linux-amd64.tar.gz | tar -xzv
+          sudo mv doctl /usr/local/bin/
+
+      - name: Authenticate doctl
+        run: doctl auth init -t ${{ secrets.DO_API_TOKEN }}
+
+      - name: Update Container App to use new image
+        run: |
+          APP_ID=$(doctl apps list --format ID,Spec.Name --no-header | grep regex-tower | awk '{print $1}')
+          doctl apps create-deployment $APP_ID
